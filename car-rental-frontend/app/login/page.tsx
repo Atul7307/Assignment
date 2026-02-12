@@ -29,7 +29,7 @@ export default function Login() {
       if (data.error) {
         setError(data.error);
       } else if (data.user) {
-        window.navigation.navigate('/');
+        window.location.href = "/";
       }
     } catch {
       setError("An error occurred. Please try again.");
