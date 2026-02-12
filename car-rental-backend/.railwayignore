@@ -1,0 +1,12 @@
+node_modules/
+vendor/
+.git/
+tests/
+*.log
+writable/logs/*
+writable/cache/*
+writable/session/*
+writable/debugbar/*
+.env.example
+README.md
+phpunit.xml.dist

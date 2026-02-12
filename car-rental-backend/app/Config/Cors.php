@@ -34,7 +34,10 @@ class Cors extends BaseConfig
          *   - ['http://localhost:8080']
          *   - ['https://www.example.com']
          */
-        'allowedOrigins' => ['http://localhost:3000'],
+        'allowedOrigins' => [
+            'http://localhost:3000',  // Local development
+            'https://your-app.vercel.app',  // Replace with your actual Vercel URL
+        ],
 
         /**
          * Origin regex patterns for the `Access-Control-Allow-Origin` header.
@@ -68,7 +71,7 @@ class Cors extends BaseConfig
          *
          * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers
          */
-        'allowedHeaders' => ['Content-Type', 'Authorization', 'X-Requested-With'],
+        'allowedHeaders' => ['*'],
 
         /**
          * Set headers to expose.
