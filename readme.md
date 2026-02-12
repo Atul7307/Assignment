@@ -56,12 +56,3 @@ This project is a **Car Rental Management System** where customers can rent cars
 - start_date
 - days
 
----
-
-## Setup Instructions
-
-### Backend
-```bash
-cd car_rental_backend
-composer install
-php spark serve

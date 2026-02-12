@@ -14,8 +14,6 @@ export default function Footer() {
               Your trusted partner for premium car rentals.
             </p>
           </div>
-
-          {/* Quick Links */}
           <div>
             <h3 className="text-white font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
@@ -37,7 +35,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* For Agencies */}
           <div>
             <h3 className="text-white font-semibold mb-4">For Agencies</h3>
             <ul className="space-y-2">
@@ -54,22 +51,14 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
             <h3 className="text-white font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-2 text-sm">
-              <li>📧 atulkesharwani7307@gmail.com</li>
-              <li>📞 +91 7307704290</li>
-              <li>📍 Prayagraj, U.P.</li>
+              <li>atulkesharwani7307@gmail.com</li>
+              <li>+91 7307704290</li>
+              <li>Prayagraj, U.P.</li>
             </ul>
           </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-sm text-gray-400">
-            © {new Date().getFullYear()} Car Rental System. All rights reserved.
-          </p>
         </div>
       </div>
     </footer>

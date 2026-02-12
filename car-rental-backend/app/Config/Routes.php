@@ -8,23 +8,86 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 
 // Preflight OPTIONS requests for CORS
-$routes->options('api/register', static function() {return ''; });
+$routes->options('api/register', static function() {
+    return service('response')
+        ->setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
+        ->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
+        ->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
+        ->setHeader('Access-Control-Allow-Credentials', 'true')
+        ->setStatusCode(200);
+});
 
-$routes->options('api/login', static function() {return '';});
+$routes->options('api/login', static function() {
+    return service('response')
+        ->setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
+        ->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
+        ->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
+        ->setHeader('Access-Control-Allow-Credentials', 'true')
+        ->setStatusCode(200);
+});
 
-$routes->options('api/logout', static function() {return '';});
+$routes->options('api/logout', static function() {
+    return service('response')
+        ->setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
+        ->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
+        ->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
+        ->setHeader('Access-Control-Allow-Credentials', 'true')
+        ->setStatusCode(200);
+});
 
-$routes->options('api/me', static function() {return '';});
+$routes->options('api/me', static function() {
+    return service('response')
+        ->setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
+        ->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
+        ->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
+        ->setHeader('Access-Control-Allow-Credentials', 'true')
+        ->setStatusCode(200);
+});
 
-$routes->options('api/cars', static function() {return '';});
+$routes->options('api/cars', static function() {
+    return service('response')
+        ->setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
+        ->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
+        ->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
+        ->setHeader('Access-Control-Allow-Credentials', 'true')
+        ->setStatusCode(200);
+});
 
-$routes->options('api/cars/(:num)', static function() { return ''; });
+$routes->options('api/cars/(:num)', static function() {
+    return service('response')
+        ->setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
+        ->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
+        ->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
+        ->setHeader('Access-Control-Allow-Credentials', 'true')
+        ->setStatusCode(200);
+});
 
-$routes->options('api/agency/cars', static function() { return ''; });
+$routes->options('api/agency/cars', static function() {
+    return service('response')
+        ->setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
+        ->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
+        ->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
+        ->setHeader('Access-Control-Allow-Credentials', 'true')
+        ->setStatusCode(200);
+});
 
-$routes->options('api/book', static function() { return ''; });
+$routes->options('api/book', static function() {
+    return service('response')
+        ->setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
+        ->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
+        ->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
+        ->setHeader('Access-Control-Allow-Credentials', 'true')
+        ->setStatusCode(200);
+});
 
-$routes->options('api/agency/bookings', static function() {return '';});
+$routes->options('api/agency/bookings', static function() {
+    return service('response')
+        ->setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
+        ->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
+        ->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
+        ->setHeader('Access-Control-Allow-Credentials', 'true')
+        ->setStatusCode(200);
+});
 
 $routes->post('api/register', 'Auth::register');
 $routes->post('api/login', 'Auth::login');

@@ -35,8 +35,7 @@ class Cors extends BaseConfig
          *   - ['https://www.example.com']
          */
         'allowedOrigins' => [
-            'http://localhost:3000',  // Local development
-            'https://your-app.vercel.app',  // Replace with your actual Vercel URL
+            'http://localhost:3000',  // Local development (Next.js)
         ],
 
         /**
