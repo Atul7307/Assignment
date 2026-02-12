@@ -43,7 +43,7 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 to-pink-100 px-4 py-12">
+    <div className="min-h-screen flex items-center justify-center bg-purple-50  px-4 py-12">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <h2 className="text-4xl font-extrabold text-gray-900">

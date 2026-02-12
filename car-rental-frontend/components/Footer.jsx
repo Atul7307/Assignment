@@ -8,11 +8,10 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-              <span className="text-3xl">🚗</span>
               <span className="text-2xl font-bold text-white">CarRental</span>
             </div>
             <p className="text-sm text-gray-400">
-              Your trusted partner for premium car rentals. Drive your dreams with us.
+              Your trusted partner for premium car rentals.
             </p>
           </div>
 
@@ -52,11 +51,6 @@ export default function Footer() {
                   Manage Bookings
                 </Link>
               </li>
-              <li>
-                <Link href="/register" className="hover:text-indigo-400 transition duration-200">
-                  Become a Partner
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -64,9 +58,9 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-2 text-sm">
-              <li>📧 info@carrental.com</li>
-              <li>📞 +1 (555) 123-4567</li>
-              <li>📍 123 Rental Street, City</li>
+              <li>📧 atulkesharwani7307@gmail.com</li>
+              <li>📞 +91 7307704290</li>
+              <li>📍 Prayagraj, U.P.</li>
             </ul>
           </div>
         </div>

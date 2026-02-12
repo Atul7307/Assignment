@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { API } from "../../lib/api";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -11,7 +10,6 @@ export default function Login() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,7 +29,7 @@ export default function Login() {
       if (data.error) {
         setError(data.error);
       } else if (data.user) {
-        router.push("/");
+        window.navigation.navigate('/');
       }
     } catch {
       setError("An error occurred. Please try again.");
@@ -41,7 +39,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4 py-12">
+    <div className="min-h-screen flex items-center justify-center  from-blue-50 to-indigo-100 px-4 py-12">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <h2 className="text-4xl font-extrabold text-gray-900">

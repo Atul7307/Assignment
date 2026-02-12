@@ -78,7 +78,8 @@ export default function Cars() {
             {cars.map(car => (
               <div key={car.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300">
                 {/* Car Image Placeholder */}
-                <div className="bg-gradient-to-r from-indigo-500 to-purple-600 h-48 flex items-center justify-center">
+                <div className="bg-indigo-500  h-48 flex items-center justify-center">
+                  
                   <span className="text-8xl">🚗</span>
                 </div>
 
@@ -87,12 +88,10 @@ export default function Cars() {
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{car.model}</h3>
                   <div className="space-y-2 mb-4">
                     <p className="text-gray-600 flex items-center">
-                      <span className="mr-2">🔢</span>
                       <span className="font-semibold">Vehicle:</span>
                       <span className="ml-2">{car.vehicle_number}</span>
                     </p>
                     <p className="text-gray-600 flex items-center">
-                      <span className="mr-2">👥</span>
                       <span className="font-semibold">Capacity:</span>
                       <span className="ml-2">{car.seating_capacity} seats</span>
                     </p>

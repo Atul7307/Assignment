@@ -62,7 +62,7 @@ export default function Bookings() {
             {/* Desktop View */}
             <div className="hidden md:block bg-white rounded-xl shadow-lg overflow-hidden">
               <table className="w-full">
-                <thead className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+                <thead className="bg-indigo-600 text-white">
                   <tr>
                     <th className="px-6 py-4 text-left font-semibold">Booking ID</th>
                     <th className="px-6 py-4 text-left font-semibold">Customer</th>
