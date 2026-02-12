@@ -1,0 +1,16 @@
+.git
+.gitignore
+.env
+.env.example
+writable/logs/*
+writable/cache/*
+writable/session/*
+writable/debugbar/*
+!writable/logs/.gitkeep
+!writable/cache/.gitkeep
+!writable/session/.gitkeep
+node_modules
+tests
+.editorconfig
+phpunit.xml.dist
+README.md
