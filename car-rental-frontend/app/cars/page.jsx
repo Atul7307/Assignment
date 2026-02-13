@@ -39,7 +39,7 @@ export default function Cars() {
     const data = bookingData[carId] || { start_date: "2026-02-20", days: 2 };
     
     try {
-      await fetch(`${API}/api/book`, {
+      const response = await fetch(`${API}/api/book`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -49,10 +49,18 @@ export default function Cars() {
           days: parseInt(data.days)
         })
       });
-      alert("Car booked successfully!");
-      setShowBookingModal(null);
-    } catch {
-      alert("Error booking car. Please try again.");
+      
+      const result = await response.json();
+      
+      if (!response.ok || result.error) {
+        alert(result.error || "Error booking car. Please try again.");
+      } else {
+        alert("Car booked successfully!");
+        setShowBookingModal(null);
+      }
+    } catch (error) {
+      console.error("Booking error:", error);
+      alert("Network error. Please try again.");
     }
   };
 
@@ -110,10 +118,10 @@ export default function Cars() {
                     </p>
                     <p className="text-gray-600 flex items-center">
                       <span className="font-semibold">Capacity:</span>
-                      <span className="ml-2">{car.seating_capacity} seats</span>
+                      <span className="ml-2">{car.seating_capacity || car.capacity} seats</span>
                     </p>
                     <p className="text-indigo-600 text-2xl font-bold mt-4">
-                      ₹{car.rent_per_day}<span className="text-base text-gray-600">/day</span>
+                      ₹{car.rent_per_day || car.rent}<span className="text-base text-gray-600">/day</span>
                     </p>
                   </div>
 

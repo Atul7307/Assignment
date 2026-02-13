@@ -30,13 +30,18 @@ export default function Register() {
 
       const data = await response.json();
 
-      if (data.error) {
-        setError(data.error);
-      } else {
+      if (!response.ok || data.error) {
+        setError(data.error || "Registration failed. Please try again.");
+      } else if (data.status === 'registered' || data.message) {
+        // Registration successful
+        alert("Registration successful! Please login.");
         router.push("/login");
+      } else {
+        setError("Registration failed. Please try again.");
       }
-    } catch {
-      setError("An error occurred. Please try again.");
+    } catch (error) {
+      console.error("Registration error:", error);
+      setError("Network error. Please try again.");
     } finally {
       setLoading(false);
     }

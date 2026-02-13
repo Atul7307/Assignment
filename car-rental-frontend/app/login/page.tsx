@@ -26,14 +26,21 @@ export default function Login() {
 
       const data = await response.json();
 
-      if (data.error) {
-        setError(data.error);
-      } else if (data.user) {
-        window.location.href = "/";
+      if (!response.ok || data.error) {
+        setError(data.error || "Login failed. Please try again.");
+        setLoading(false);
+      } else if (data.user || data.status === 'login success') {
+        // Give browser time to set cookie before redirect
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 100);
+      } else {
+        setError("Login failed. Please try again.");
+        setLoading(false);
       }
-    } catch {
-      setError("An error occurred. Please try again.");
-    } finally {
+    } catch (error) {
+      console.error("Login error:", error);
+      setError("Network error. Please try again.");
       setLoading(false);
     }
   };

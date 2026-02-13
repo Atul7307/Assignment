@@ -14,7 +14,9 @@ const PORT = process.env.PORT || 5000;
 
 // CORS configuration
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001', 'https://car-services-azure.vercel.app'],
+  origin: ['http://localhost:3000', 'http://localhost:3001', 'https://car-services-azure.vercel.app',
+      'https://car-services-azure.vercel.app/'
+  ],
   credentials: true, // CRITICAL: Allow credentials (cookies, authorization headers)
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Cookie'],
@@ -35,7 +37,7 @@ app.use(session({
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000, // 24 hours
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // 'none' for cross-site cookies in production
-    domain: process.env.NODE_ENV === 'production' ? undefined : 'localhost' // Don't set domain in production (auto-detect)
+    // Don't set domain - let browser handle it automatically
   }
 }));
 

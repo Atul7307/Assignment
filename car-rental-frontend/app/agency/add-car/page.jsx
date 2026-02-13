@@ -30,16 +30,17 @@ export default function AddCar() {
 
       const data = await response.json();
 
-      if (data.error) {
-        setError(data.error);
+      if (!response.ok || data.error) {
+        setError(data.error || "Failed to add car. Please try again.");
       } else {
         setSuccess(true);
         setTimeout(() => {
-          router.push("/cars");
-        }, 2000);
+          router.push("/agency/your-cars");
+        }, 1500);
       }
-    } catch {
-      setError("Failed to add car. Please try again.");
+    } catch (error) {
+      console.error("Add car error:", error);
+      setError("Network error. Please try again.");
     } finally {
       setLoading(false);
     }

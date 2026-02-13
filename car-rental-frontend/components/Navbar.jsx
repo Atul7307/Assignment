@@ -15,14 +15,21 @@ export default function Navbar() {
       const response = await fetch(`${API}/api/me`, {
         credentials: "include",
       });
-      const data = await response.json();
       
-      if (data.user) {
-        setUser(data.user);
+      // Handle authentication properly
+      if (response.ok) {
+        const data = await response.json();
+        if (data.user) {
+          setUser(data.user);
+        } else {
+          setUser(null);
+        }
       } else {
+        // 401 or other error - user not authenticated
         setUser(null);
       }
-    } catch {
+    } catch (error) {
+      console.error("Auth check error:", error);
       setUser(null);
     } finally {
       setLoading(false);
