@@ -38,45 +38,16 @@ function getJsonInput() {
 
 // Send JSON response
 function sendJson($data, $statusCode = 200) {
-    // Ensure CORS headers are set (in case they were missed)
+    // Always set CORS headers - no conditions
     $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
     
-    if (!empty($origin) && !headers_sent()) {
-        $allowedOrigins = [
-            'http://localhost:3000',
-            'http://localhost:3001',
-            'http://localhost',
-            'http://127.0.0.1:3000',
-            'http://127.0.0.1:3001',
-            'https://car-rental-api.rf.gd',
-        ];
-        
-        $isAllowed = false;
-        
-        // Exact match
-        if (in_array($origin, $allowedOrigins)) {
-            $isAllowed = true;
-        }
-        // Localhost variations (any port)
-        elseif (preg_match('/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/', $origin)) {
-            $isAllowed = true;
-        }
-        // Deployed frontend domains
-        elseif (strpos($origin, '.vercel.app') !== false || 
-                strpos($origin, '.netlify.app') !== false ||
-                strpos($origin, '.rf.gd') !== false) {
-            $isAllowed = true;
-        }
-        
-        if ($isAllowed) {
+    if (!headers_sent()) {
+        if (!empty($origin)) {
             header("Access-Control-Allow-Origin: $origin");
             header("Access-Control-Allow-Credentials: true");
-            header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-            header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, User-Agent, Cookie, Accept, Origin");
         }
-    }
-    
-    if (!headers_sent()) {
+        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, User-Agent, Cookie, Accept, Origin");
         header("Content-Type: application/json; charset=UTF-8");
     }
     
