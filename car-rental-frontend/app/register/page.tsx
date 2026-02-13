@@ -79,6 +79,7 @@ export default function Register() {
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200 outline-none"
                 placeholder="John Doe"
+                suppressHydrationWarning
               />
             </div>
 
@@ -94,6 +95,7 @@ export default function Register() {
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200 outline-none"
                 placeholder="you@example.com"
+                suppressHydrationWarning
               />
             </div>
 
@@ -109,6 +111,7 @@ export default function Register() {
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200 outline-none"
                 placeholder="••••••••"
+                suppressHydrationWarning
               />
             </div>
 
@@ -131,6 +134,7 @@ export default function Register() {
               type="submit"
               disabled={loading}
               className="w-full bg-purple-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              suppressHydrationWarning
             >
               {loading ? "Creating Account..." : "Create Account"}
             </button>

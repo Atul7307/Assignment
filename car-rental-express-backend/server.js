@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 // CORS configuration
 app.use(cors({
   origin: ['http://localhost:3000', 'http://localhost:3001', 'https://car-services-azure.vercel.app',
-      'https://car-services-azure.vercel.app/'
+      'https://car-services-git-master-atul-kesharwanis-projects-cb742ac9.vercel.app/cars'
   ],
   credentials: true, // CRITICAL: Allow credentials (cookies, authorization headers)
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
