@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Tester</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; margin-bottom: 20px; }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #5568d3; }
+        .response {
+            margin-top: 10px;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚗 Car Rental API Tester</h1>
+        
+        <div class="test-section">
+            <h3>1. Register User</h3>
+            <input type="text" id="reg-name" placeholder="Name" value="Test User">
+            <input type="email" id="reg-email" placeholder="Email" value="test@example.com">
+            <input type="password" id="reg-password" placeholder="Password" value="123456">
+            <select id="reg-role">
+                <option value="customer">Customer</option>
+                <option value="agency">Agency</option>
+            </select>
+            <button onclick="register()">Register</button>
+            <div class="response" id="reg-response"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>2. Login</h3>
+            <input type="email" id="login-email" placeholder="Email" value="test@example.com">
+            <input type="password" id="login-password" placeholder="Password" value="123456">
+            <button onclick="login()">Login</button>
+            <div class="response" id="login-response"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>3. Get Current User</h3>
+            <button onclick="getCurrentUser()">Get Me</button>
+            <div class="response" id="me-response"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>4. Get All Cars</h3>
+            <button onclick="getCars()">Get Cars</button>
+            <div class="response" id="cars-response"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>5. Create Car (Agency Only)</h3>
+            <input type="text" id="car-model" placeholder="Model" value="Toyota Camry">
+            <input type="text" id="car-number" placeholder="Vehicle Number" value="ABC-123">
+            <input type="number" id="car-seats" placeholder="Seating Capacity" value="5">
+            <input type="number" id="car-rent" placeholder="Rent Per Day" value="50">
+            <button onclick="createCar()">Create Car</button>
+            <div class="response" id="create-car-response"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>6. Book Car (Customer Only)</h3>
+            <input type="number" id="book-car-id" placeholder="Car ID" value="1">
+            <input type="date" id="book-date" value="2026-02-20">
+            <input type="number" id="book-days" placeholder="Days" value="3">
+            <button onclick="bookCar()">Book Car</button>
+            <div class="response" id="book-response"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>7. Logout</h3>
+            <button onclick="logout()">Logout</button>
+            <div class="response" id="logout-response"></div>
+        </div>
+    </div>
+
+    <script>
+        // Change this to your InfinityFree URL
+        const API_BASE = 'https://car-rental-api.rf.gd';
+
+        async function apiCall(endpoint, method = 'GET', body = null) {
+            try {
+                const options = {
+                    method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include' // Important for cookies!
+                };
+                
+                if (body) {
+                    options.body = JSON.stringify(body);
+                }
+
+                const response = await fetch(`${API_BASE}${endpoint}`, options);
+                const data = await response.json();
+                return { success: true, data };
+            } catch (error) {
+                return { success: false, error: error.message };
+            }
+        }
+
+        function displayResponse(elementId, result) {
+            const element = document.getElementById(elementId);
+            if (result.success) {
+                element.className = 'response success';
+                element.textContent = JSON.stringify(result.data, null, 2);
+            } else {
+                element.className = 'response error';
+                element.textContent = 'Error: ' + result.error;
+            }
+        }
+
+        async function register() {
+            const result = await apiCall('/api/register', 'POST', {
+                name: document.getElementById('reg-name').value,
+                email: document.getElementById('reg-email').value,
+                password: document.getElementById('reg-password').value,
+                role: document.getElementById('reg-role').value
+            });
+            displayResponse('reg-response', result);
+        }
+
+        async function login() {
+            const result = await apiCall('/api/login', 'POST', {
+                email: document.getElementById('login-email').value,
+                password: document.getElementById('login-password').value
+            });
+            displayResponse('login-response', result);
+        }
+
+        async function getCurrentUser() {
+            const result = await apiCall('/api/me');
+            displayResponse('me-response', result);
+        }
+
+        async function getCars() {
+            const result = await apiCall('/api/cars');
+            displayResponse('cars-response', result);
+        }
+
+        async function createCar() {
+            const result = await apiCall('/api/cars', 'POST', {
+                model: document.getElementById('car-model').value,
+                vehicle_number: document.getElementById('car-number').value,
+                seating_capacity: parseInt(document.getElementById('car-seats').value),
+                rent_per_day: parseInt(document.getElementById('car-rent').value)
+            });
+            displayResponse('create-car-response', result);
+        }
+
+        async function bookCar() {
+            const result = await apiCall('/api/book', 'POST', {
+                car_id: parseInt(document.getElementById('book-car-id').value),
+                start_date: document.getElementById('book-date').value,
+                days: parseInt(document.getElementById('book-days').value)
+            });
+            displayResponse('book-response', result);
+        }
+
+        async function logout() {
+            const result = await apiCall('/api/logout', 'POST');
+            displayResponse('logout-response', result);
+        }
+    </script>
+</body>
+</html>

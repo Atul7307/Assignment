@@ -9,14 +9,30 @@ export default function Cars() {
   const [showBookingModal, setShowBookingModal] = useState(null);
 
   useEffect(() => {
-    fetch(`${API}/api/cars`, { credentials: "include" })
-      .then(res => res.json())
+    fetch(`${API}/api/cars`, { 
+      credentials: "include",
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then(data => {
-        console.log(data)
-        setCars(data);
+        console.log("Cars data:", data);
+        if (Array.isArray(data)) {
+          setCars(data);
+        } else {
+          console.error("Expected array, got:", data);
+          setCars([]);
+        }
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(err => {
+        console.error("Error fetching cars:", err);
+        setLoading(false);
+      });
   }, []);
 
   const rent = async (carId) => {

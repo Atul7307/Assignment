@@ -1,0 +1,217 @@
+{
+  "info": {
+    "name": "Car Rental API - Core PHP",
+    "description": "Complete API collection for testing the Car Rental Core PHP backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register Customer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Customer\",\n  \"email\": \"customer@example.com\",\n  \"password\": \"password123\",\n  \"role\": \"customer\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "register"]
+            }
+          }
+        },
+        {
+          "name": "Register Agency",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"ABC Car Rentals\",\n  \"email\": \"agency@example.com\",\n  \"password\": \"password123\",\n  \"role\": \"agency\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"customer@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/me",
+              "host": ["{{base_url}}"],
+              "path": ["api", "me"]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/logout",
+              "host": ["{{base_url}}"],
+              "path": ["api", "logout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cars",
+      "item": [
+        {
+          "name": "Get All Cars",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/cars",
+              "host": ["{{base_url}}"],
+              "path": ["api", "cars"]
+            }
+          }
+        },
+        {
+          "name": "Create Car (Agency)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"Toyota Camry\",\n  \"vehicle_number\": \"ABC-123\",\n  \"seating_capacity\": 5,\n  \"rent_per_day\": 50\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/cars",
+              "host": ["{{base_url}}"],
+              "path": ["api", "cars"]
+            }
+          }
+        },
+        {
+          "name": "Update Car (Agency)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"Toyota Camry Updated\",\n  \"vehicle_number\": \"ABC-123\",\n  \"seating_capacity\": 5,\n  \"rent_per_day\": 55\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/cars/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "cars", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Agency Cars",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/agency/cars",
+              "host": ["{{base_url}}"],
+              "path": ["api", "agency", "cars"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "Book a Car (Customer)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"car_id\": 1,\n  \"start_date\": \"2026-02-20\",\n  \"days\": 3\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/book",
+              "host": ["{{base_url}}"],
+              "path": ["api", "book"]
+            }
+          }
+        },
+        {
+          "name": "Get Agency Bookings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/agency/bookings",
+              "host": ["{{base_url}}"],
+              "path": ["api", "agency", "bookings"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost/car-rental-core-php",
+      "type": "string"
+    }
+  ]
+}

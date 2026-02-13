@@ -1,0 +1,68 @@
+RewriteEngine On
+# For local development: /car-rental-core-php/
+# For production deployment: /
+RewriteBase /car-rental-core-php/
+
+# PHP error handling for production
+php_flag display_errors Off
+php_flag display_startup_errors Off
+php_flag log_errors On
+php_value error_log error_log.txt
+
+# Handle CORS preflight OPTIONS requests FIRST - Explicit routes for each endpoint
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^api/register$ options.php [L]
+
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^api/login$ options.php [L]
+
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^api/logout$ options.php [L]
+
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^api/me$ options.php [L]
+
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^api/cars$ options.php [L]
+
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^api/cars/([0-9]+)$ options.php [L]
+
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^api/agency/cars$ options.php [L]
+
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^api/book$ options.php [L]
+
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^api/agency/bookings$ options.php [L]
+
+# Fallback OPTIONS handler for any other API routes
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^api/(.*)$ options.php [L]
+
+# API Routes
+
+# Auth routes
+RewriteRule ^api/register$ api/auth/register.php [L]
+RewriteRule ^api/login$ api/auth/login.php [L]
+RewriteRule ^api/logout$ api/auth/logout.php [L]
+RewriteRule ^api/me$ api/auth/me.php [L]
+
+# Car routes
+RewriteRule ^api/cars$ api/cars/index.php [L]
+RewriteRule ^api/cars/([0-9]+)$ api/cars/update.php?id=$1 [L]
+RewriteRule ^api/agency/cars$ api/cars/agency-cars.php [L]
+
+# Booking routes
+RewriteRule ^api/book$ api/bookings/book.php [L]
+RewriteRule ^api/agency/bookings$ api/bookings/agency-bookings.php [L]
+
+# Prevent directory listing
+Options -Indexes
+
+# Protect config files
+<FilesMatch "^(database|cors)\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

@@ -1,0 +1,25 @@
+# Ignore config files with sensitive data
+config/database.php
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore logs and error files
+*.log
+error_log.txt
+error_log
+
+# Ignore temporary files
+tmp/
+temp/
+
+# Ignore user-specific PHP ini
+.user.ini
