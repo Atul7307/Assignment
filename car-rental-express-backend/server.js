@@ -14,8 +14,6 @@ const PORT = process.env.PORT || 5000;
 
 app.set('trust proxy', 1);
 
-
-
 // CORS configuration
 app.use(cors({
   origin: ['http://localhost:3000', 'https://car-services-psi.vercel.app/', 'https://car-service-two-sable.vercel.app'],
@@ -35,11 +33,10 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+    secure: true, // Always use secure cookies (requires HTTPS)
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // 'none' for cross-site cookies in production
-    // Don't set domain - let browser handle it automatically
+    sameSite: 'none', // Allow cross-site cookies
   }
 }));
 
