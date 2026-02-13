@@ -30,10 +30,7 @@ export default function Login() {
         setError(data.error || "Login failed. Please try again.");
         setLoading(false);
       } else if (data.user || data.status === 'login success') {
-        // Give browser time to set cookie before redirect
-        setTimeout(() => {
           window.location.href = "/";
-        }, 100);
       } else {
         setError("Login failed. Please try again.");
         setLoading(false);
