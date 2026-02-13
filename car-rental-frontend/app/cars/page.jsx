@@ -12,6 +12,7 @@ export default function Cars() {
     fetch(`${API}/api/cars`, { credentials: "include" })
       .then(res => res.json())
       .then(data => {
+        console.log(data)
         setCars(data);
         setLoading(false);
       })
