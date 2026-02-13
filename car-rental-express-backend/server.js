@@ -14,8 +14,7 @@ const PORT = process.env.PORT || 5000;
 
 // CORS configuration
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001'], // Add your frontend URLs
-  credentials: true,
+  origin: ['http://localhost:3000', 'http://localhost:3001', 'https://car-services-azure.vercel.app'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
