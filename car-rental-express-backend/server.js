@@ -12,6 +12,10 @@ const compatRoutes = require('./routes/compat');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.set('trust proxy', 1);
+
+
+
 // CORS configuration
 app.use(cors({
   origin: ['http://localhost:3000', 'https://car-services-psi.vercel.app/', 'https://car-service-two-sable.vercel.app'],
